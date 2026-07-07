@@ -17,6 +17,7 @@
   regex:
     - ^(201[0-9]|202[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$
     - ^.+$
+
   default_blank_text: { 3: （不愿透露） }
 - num: 4
   title: 你的培养层次是？
@@ -31,10 +32,12 @@
     - text: 博士研究生
 
 - num: 5
-  title: 你目前在哪一个校区就读？
+  title: 你目前在哪一个校区就读？（可选）
+  required: false
 
 - num: 6
   title: 学校转专业容易吗？（可选）
+  required: false
   options:
     - text: 很容易（门槛低/通过率高）
     - text: 一般（有绩点或人数限制）
@@ -148,7 +151,7 @@
         prompt: 澡堂离宿舍多远？
 
 - num: 14
-  title: 每天会断电断网吗？
+  title: 每天会断电断网吗？（可选）
   type: checkbox
   required: false
   prompt: 如果不断电也不断网可直接跳过
@@ -176,7 +179,6 @@
 
 - num: 17
   title: 晚上宿舍会查寝或封寝吗？
-  type: radio
   options:
     - text: 既严格查寝又按时封寝
       additional_text:
@@ -198,7 +200,6 @@
 - num: 20
   title: 校园内用什么卡消费？
   type: checkbox
-  prompt: null
   options:
     - text: 实体校园卡
     - text: 手机虚拟校园码
@@ -276,6 +277,7 @@
 
 - num: 28
   title: 每学期跑步打卡的要求是多少公里？（可选，没有请跳过）
+  required: false
   prompt: 以及是否能用自行车/滑板车“刷”跑步App数据？
 
 - num: 29

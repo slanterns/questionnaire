@@ -43,6 +43,38 @@
                 "propertyName": "type"
             }
         },
+        "BlankConfig": {
+            "anyOf": [
+                {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "discriminator": {
+                "propertyName": "type"
+            }
+        },
         "CheckboxQuestion": {
             "additionalProperties": false,
             "properties": {
@@ -136,40 +168,15 @@
                     "type": "integer"
                 },
                 "regex": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/BlankConfig",
                     "default": null,
+                    "description": "各空格的正则校验规则。支持混合格式：str 按顺序对应，dict 显式指定位置。少于 blank_count 时，未指定的空格不校验；多于则报错。",
                     "title": "正则校验规则"
                 },
                 "default_blank_text": {
-                    "anyOf": [
-                        {
-                            "additionalProperties": {
-                                "type": "string"
-                            },
-                            "type": "object"
-                        },
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/BlankConfig",
                     "default": null,
-                    "description": "各空格的默认填充文本。dict 格式：键为空格序号（从1起），值为默认文本；list 格式：按顺序对应每个空格，长度须等于 blank_count。",
+                    "description": "各空格的默认填充文本。dict 格式：键为空格序号（从1起），值为默认文本；list 格式支持混合：str 按顺序填充，dict 显式指定位置（如 [\"北京\", {5: \"广州\"}, \"上海\"]）。",
                     "title": "默认填充文本"
                 }
             },

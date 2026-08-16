@@ -163,7 +163,7 @@
                 "blank_count": {
                     "default": 2,
                     "description": "fill_blank 类型的多项填空题，空格数必须大于 1",
-                    "minimum": 2,
+                    "minimum": 1,
                     "title": "空格数量",
                     "type": "integer"
                 },
